@@ -131,6 +131,8 @@ public class MyMath {
 
 
   public static String countingNum()
+          //public static int[] readAndCountNos()
+          //public static void display(int[] counts)
   {
       String txt = "";
       int num;
