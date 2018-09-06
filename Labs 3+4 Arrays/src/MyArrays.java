@@ -1,6 +1,4 @@
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 public class MyArrays {
 
@@ -12,9 +10,7 @@ public class MyArrays {
         while (!found && index < currentSize)
         {
             if(a[index] == searchKey)
-            {
                 found = true;
-            }
             else
                 index++;
         }
@@ -22,9 +18,8 @@ public class MyArrays {
         if (found) {
             return index;
         }
-        else{
+        else
             return -1;
-        }
     }
 
     public static int simpleLinearSearch(int[] a, int currentSize, int searchKey)//Done
@@ -35,10 +30,9 @@ public class MyArrays {
            {
                return i;
            }
-           else if(a[i] > searchKey)//Improved
-           {
+           else if(a[i] > searchKey)//searchKey < a[i]
+               //Improved
                return -1;
-           }
        }
         return -1;
     }
@@ -56,7 +50,6 @@ public class MyArrays {
 
         /*int size = r1 - l1 + 1 + r2 - l2 + 1;
         int[] a3 = new int[size]; */
-
         while (i <= r1 && j <= r2)
         {
             if (a1[i] <= a2[j])
@@ -66,29 +59,21 @@ public class MyArrays {
                 k++;
             }
             else //if(a1[i] >= a2[j])
-            {
                 a3[k] = a2[j];
                 j++;
                 k++;
-            }
         }
 
         if (i <= r1)//First array not completed
         {
-            int m = k;
-
-            for (int l = i; l <= r1; l++) {//Left1 and Right1
-                a3[m] = a1[l];
-                m++;
-            }
-
-        } else {
-            int m = k;
-
-            for (int l = j; l <= r2; l++) {//Left2 and Right2
-                a3[m] = a2[l];
-                m++;
-            }
+            for (int l = i; l <= r1; l++)//Left1 and Right1
+                a3[k] = a1[l];
+                k++;
+        }
+        else {
+            for (int m = j; m <= r2; m++)//Left2 and Right2
+                a3[k] = a2[m];
+                k++;
         }
         return a3;
     }
@@ -111,31 +96,21 @@ public class MyArrays {
                 k++;
             }
             else //if(a1[i].compareTo(a2[j]) >= 0)
-            {
                 a3[k] = a2[j];
                 j++;
                 k++;
-            }
         }
         if(i <= r1)//First array not completed
         {
-            int m = k;
             for(int l = i; l <= r1; l++)
-            {
-                a3[m] = a1[l];
-                m++;
-            }
-
+                a3[k] = a1[l];
+                k++;
         }
         else
         {
-            int m = k;
-
-            for(int l = j; l <= r2; l++)
-            {
-                a3[m] = a2[l];
-                m++;
-            }
+            for(int m = j; m <= r2; m++)
+                a3[k] = a2[m];
+                k++;
         }
         return a3;
     }
@@ -152,7 +127,7 @@ public class MyArrays {
 
            for (int j = i + 1; j < a.length; j++)
             {
-              if(minArrayVal > a[j])//a[j] < minArrayVal
+              if(a[j] < minArrayVal)//minArrayVal > a[j]
               {
                   minArrayVal = a[j];
                   index = j;
@@ -176,7 +151,7 @@ public class MyArrays {
 
             for (int j = i + 1; j < a.length; j++)
             {
-                if(minArrayVal < a[j])//a[j] > minArrayVal
+                if(a[j] > minArrayVal)//minArrayVal < a[j]
                 {
                     minArrayVal = a[j];
                     index = j;
@@ -196,7 +171,6 @@ public class MyArrays {
         //for (int i = 0; i <= a.length - 1; i++)
         {
             //find smallest of a[i] to a[currentSize-1]
-
             int index = i;//Min String
             //int index = a[i];
 
@@ -207,7 +181,6 @@ public class MyArrays {
                {
                    index = j;
                }
-
             }
             /*if p != i, swap a[p] and a[i]*/
             String temp = a[i];
@@ -215,8 +188,6 @@ public class MyArrays {
             a[index] = temp;
         }
     }
-
-
 
     public static void insertSort(int[] a, int currentSize) //Done
             //Ascending Order
@@ -287,35 +258,56 @@ public class MyArrays {
                 r = m - 1;
             }
             else
-                {
                 l = m + 1;
-            }
         }
 
         int m = ((l + r) / 2);
 
         if (found)
-        {
             return m;
-        }
         else
             {
             return -1;
         }
     }
 
+    public static int binarySearchAlt(int[] a, int searchKey) {
 
+        int l = 0; //l = low
+        int h = a.length - 1;//h = high
+
+        if(l <= h)
+        {
+        //Check fixed point in array
+        while (l <= h)
+        {
+           int mid = l + (h + l) / 2;
+
+           if (searchKey < a[mid])//a[mid] > searchKey
+           {
+               h = mid - 1;
+           }
+
+           else if (searchKey > a[mid]) {//a[mid] < searchKey
+               l = mid + 1;
+           }
+
+            else
+           //if(searchKey == a[mid])
+                return mid;
+        }
+      }
+     return -1;
+    }
 
     public static boolean uniqueNumbers(int[] a)
     {
         Arrays.sort(a);
 
         for (int i = 0; i < a.length; i++) {
-            for (int j = i + 1; j < a.length; j++) {
-                if (a[i] == a[j]) {
+            for (int j = i + 1; j < a.length; j++)
+                if (a[i] == a[j])
                     return false;
-                }
-            }
         }
         return true;
     }
@@ -324,26 +316,24 @@ public class MyArrays {
     {
         Arrays.sort(a);
 
-        for (int i = 0; i < a.length - 1; i++) {
-                if (a[i] == a[i + 1]) {
+        for (int i = 0; i < a.length - 1; i++)
+        {
+                if (a[i] == a[i + 1])
                     return false;
-                }
         }
         return true;
     }
-
 
     public static int sumArray(int [] values, int currentSize)
     {
         int total = 0;
 
-       for (int i = 0; i < values.length; i++)
+       for (int i = 0; i < currentSize; i++)
        {
            total += values[i];
        }
       return total;
     }
-
 
     public static int removeArrayItem(int[] values, int currentSize, int pos)
     {
@@ -386,24 +376,43 @@ public class MyArrays {
    {
        int maxArrayVal = values[0];
 
-   for (int i = 1; i < values.length; i++)
-    if (values[i] > maxArrayVal)
+   for (int i = 1; i < currentSize; i++)
+    if (values[i] > maxArrayVal)//
     {
        maxArrayVal = values[i];
     }
        return maxArrayVal;
    }
 
+
+   //noName - Index of Elements - No of items in array less than max no
+    //Index of smallest starting from
+    //Counts number of elements within array and traverses through the array
+    //to give out the index of the array.
+    public static int numberLessThanMax(int[] values, int currentSize)
+    {
+        int val = values[0];
+        int index = 0;
+
+        for (int i = 1; i < currentSize; i++)
+        {
+            if (values[i] > val)//val < values[i]
+                val = values[i];
+                index = i;
+        }
+        return index;
+    }
+
+
     public static int min(int[] values,int currentSize)
     {
         int minArrayVal = values[0];
 
-        for (int i = 1; i < values.length; i++)
-            if (values[i] < minArrayVal)
+        for (int i = 1; i < currentSize; i++)
+            if (values[i] < minArrayVal)//minArrayVal > values[i]
             {
                 minArrayVal = values[i];
             }
-
         return minArrayVal;
     }
 }
