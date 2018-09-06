@@ -47,6 +47,4 @@ public class MedalDisplay {
                        System.out.printf("%8d\n", total);
                     }
             }
-
-
 }

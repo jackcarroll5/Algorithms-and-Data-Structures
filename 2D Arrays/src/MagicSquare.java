@@ -60,32 +60,30 @@ private static boolean isMagicSquare(int[][] a)
      int sum = 0;
 
      for (int element : row)
-     {
          sum += element;
-     }
 
      return sum;
  }
 
     public static void main(String[] args)
     {
-
       int [][] square = {
               {16, 3, 2, 13},
               {5, 10, 11, 8},
               {9, 6, 7, 12},
               {4, 15, 14, 1},
-      };
+      };//All sums return as 33
 
         int [][] squareFalse = {
                 {3, 16, 2, 13},
                 {5, 10, 11, 8},
                 {9, 6, 7, 12},
                 {4, 15, 14, 1},
-        };
+        };//Different Values
 
 
-      System.out.println("The magic square is " + MagicSquare.isMagicSquare(square));//Expected = True
+
+      System.out.println("\nThe magic square is " + MagicSquare.isMagicSquare(square));//Expected = True
 
         System.out.println("\nThe magic square is " + MagicSquare.isMagicSquare(squareFalse));//Expected = False
 

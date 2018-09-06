@@ -34,10 +34,8 @@ private static int [] findPeakDef(int[][] peak, int rows, int columns, int mid)
     }
 
     else
-    {
         intmidCol = intmidCol / 2;
         return findPeakDef(peak, rows, columns, mid + intmidCol);
-    }
 }
 
 private static int findPeak(int[][] peak, int rows, int mid)
@@ -48,16 +46,14 @@ private static int findPeak(int[][] peak, int rows, int mid)
    for (int i = 0; i < rows; i++)
     {
        if(peak[i][mid] > max)
-       {
          max = peak[i][mid];
          row = i;
-       }
     }
     return row;
 }
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args)
+    {
         int [][] peak = {
                 {10, 8, 10, 10},
             {14, 13, 12, 11},
@@ -68,6 +64,5 @@ private static int findPeak(int[][] peak, int rows, int mid)
        int [] p = findMax(peak, peak.length, peak[0].length);
 
         System.out.println("The peak in this array is: " + peak[p[0]][p[1]]);//Expected Peak = 19
-
     }
 }

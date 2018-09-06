@@ -1,7 +1,9 @@
+import java.util.Arrays;
+
 public class Medals {
 
-   private final int COUNTRIES = 7;
-   private final int MEDALS = 3;
+   private final int COUNTRIES = 7;//Row
+   private final int MEDALS = 3;//Column
 
     private String[] countries =
             {
@@ -34,7 +36,6 @@ public class Medals {
 
     private void set(int country, int medal, int count) {
         // store count at the specified position in the grid
-
         counts[country][medal] = count;
         }
 
@@ -53,16 +54,15 @@ public class Medals {
                 // Print each row element and update the row total
                 for (int j = 0; j < MEDALS; j++)
                 {
-                    System.out.printf("%7d", counts[i][j]);
-                    total = total + counts[i][j];
+                    System.out.printf("%8d", counts[i][j]);
+                    total += counts[i][j];
                 }
-
                 // Display the row total and print a new lineg
                 System.out.printf("%8d\n", total);
             }
         }
 
-    private int sum(){
+    private int sum(){ /*Add*/
         //compute total medals for all countries and all medal types
        //Total all the medals
         int totalMedals = 0;
@@ -74,13 +74,11 @@ public class Medals {
         System.out.println("\n\nTotal medals: "+ totalMedals);
 
         System.out.println();
-
         return totalMedals;
     }
 
     private int[] calculateRowTotals(){
         //compute row totals i.e. total number of medals for each country
-
         //Saving row Totals
         int []countryTotals = new int[COUNTRIES];
 
@@ -90,9 +88,7 @@ public class Medals {
             countryTotals[i] = 0;
 
             for (int j = 0; j < MEDALS; j++)
-            {
                 countryTotals[i] += counts[i][j];
-            }
         }
         return countryTotals;
     }
@@ -108,13 +104,10 @@ public class Medals {
             medalTotals[j] = 0;
 
             for (int i = 0; i < COUNTRIES; i++)
-            {
                 medalTotals[j] += counts[i][j];
-            }
         }
         return medalTotals;
     }
-
 
     public static void main(String[] args) {
 
@@ -133,9 +126,7 @@ public class Medals {
 
     medals.sum();
 
-
-
-  int[] rowTotals =   medals.calculateRowTotals();
+  int[] rowTotals =  medals.calculateRowTotals();
   int[] colTotals =  medals.calculateColumnTotals();
 
     System.out.println("Medal Column Totals");
@@ -146,8 +137,6 @@ public class Medals {
 
         System.out.println("Medals per Country Totals");
         for (int i = 0; i < rowTotals.length; i++)
-            System.out.println("Rows " + i + ": " + rowTotals[i]);
-
+            System.out.println("Row " + i + ": " + rowTotals[i]);
     }
-
 }

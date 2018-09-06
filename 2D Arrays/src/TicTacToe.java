@@ -27,37 +27,30 @@ public class TicTacToe {
             board[i][j] = player;
     }
 
-
     public String getWinner()
     {
         for (int x = 0; x < 3; x++)
         {
             //Rows
-            if ((board[x][1] == board[x][0]) && (board[x][1] == board[x][2]))
-            {
-                //return "x";
+            if ((board[x][1].equals(board[x][0])) && (board[x][1].equals(board[x][2])))
                 return board[x][1];
-            }
         }
 
         for (int y = 0; y < 3; y++)
         {
             //Columns
-            if ((board[1][y] == board[0][y]) && (board[1][y] == board[2][y]))
-            {
-                //return "x";
+            if ((board[1][y].equals(board[0][y])) && (board[1][y].equals(board[2][y])))
                 return board[1][y];
-            }
         }
 
-        if((board[1][1] == board[0][0]) && (board[1][1] == board[2][2]) ||
-                (board[1][1] == board[0][2]) && (board[1][1] == board[2][0]))
+        //Diagonal
+        if((board[1][1].equals(board[0][0])) && (board[1][1].equals(board[2][2])) ||
+                (board[1][1].equals(board[0][2])) && (board[1][1].equals(board[2][0])))
         {
             return (board[1][1]);
         }
         return "";
     }
-
 
     /**
      Creates a string representation of the board, such as
@@ -71,14 +64,13 @@ public class TicTacToe {
         String r = "";
         for (int i = 0; i < ROWS; i++)
         {
-            r = r + "|";
+            r += "|";
 
             for (int j = 0; j < COLUMNS; j++)
-                r = r + board[i][j];
+                r += board[i][j];
 
-            r = r + "|\n";
+            r += "|\n";
         }
         return r;
     }
-
 }
